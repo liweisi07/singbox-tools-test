@@ -8,7 +8,7 @@ AUTHOR="littleDoraemon"
 # 拆分自拉地址的组成部分：改仓库/组织/脚本名时只改这里，叠加 SB_SCRIPT_URL 可完全覆盖自拉地址
 SB_SCRIPT_NAME="sb00.sh"
 
-REPO_PATH="jyucoeng/singbox-tools"
+REPO_PATH="liweisi07/singbox-tools"
 SCRIPT_URL="${SB_SCRIPT_URL:-https://raw.githubusercontent.com/${REPO_PATH}/refs/heads/main/${SB_SCRIPT_NAME}}"
 # ================== 仓库信息 结束 ==================
 
