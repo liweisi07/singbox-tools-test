@@ -7,18 +7,18 @@
 
 #### 未PORT设置（交互式安装，会显示菜单）：
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh)
 ```
 
 #### 非交互式安装
 ```
-PORT=31009 bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh)
+PORT=31009 bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh)
 ```
 
 ### 高级用法
 
 ```
-PORT=32000 DOMAIN='你的伪装域名,不填默认为www.microsoft.com' IP_MODE='v4/v6/dual' INSTALL_MODE='go/py' SECRET='' PORT_V6='?'   bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) rep
+PORT=32000 DOMAIN='你的伪装域名,不填默认为www.microsoft.com' IP_MODE='v4/v6/dual' INSTALL_MODE='go/py' SECRET='' PORT_V6='?'   bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) rep
 ```
 
 ## 环境变量说明
@@ -53,26 +53,26 @@ PORT=32000 DOMAIN='你的伪装域名,不填默认为www.microsoft.com' IP_MODE=
 
 ### 2、卸载已安装的服务：
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) del
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) del
 ```
 
 ### 3、列出已安装服务的详细信息：
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) list
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) list
 ```
 
 ### 4、启动已安装的服务：
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) start
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) start
 ```
 
 ### 5、停止已安装的服务：
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) stop
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) stop
 ```
 ### 6、重启已安装的服务：
 ```
- bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-old.sh) restart
+ bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-old.sh) restart
 ```
 
 
