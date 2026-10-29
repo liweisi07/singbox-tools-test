@@ -5,7 +5,7 @@
 ### 1、交互式菜单（无参数运行，推荐此运行方式，因为安装参数有点多，带交互方式比较友好）
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh)
 ```
 
 菜单功能一览：
@@ -31,7 +31,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 #### 安装 Go 版（mtg）
 
 ```
-PORT=20301 DOMAIN='www.apple.com' IP_MODE='v4' bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+PORT=20301 DOMAIN='www.apple.com' IP_MODE='v4' bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh) rep
 ```
 
 #### 安装 Telemt 高性能版 （注意：请在每一个环境变量之后都加一个 \，确保每行末尾 \ 前没有多余空格）
@@ -48,7 +48,7 @@ TELEMT_EXPIRE='2026-12-31' \
 TELEMT_SPEED_UP=1.5 \
 TELEMT_SPEED_DOWN=5.0 \
 TELEMT_RESET_DAY=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh) rep
 ```
 
 **MTProxy Telemt版完整创建流程示例**（主账号 + 子用户 + 查看链接）
@@ -70,7 +70,7 @@ TELEMT_USER='admin' \
 TELEMT_QUOTA=100 \
 TELEMT_EXPIRE='2099-12-31' \
 TELEMT_RESET_DAY=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh) rep
 ```
 
 ```
@@ -80,13 +80,13 @@ TELEMT_USER=doraemon \
 TELEMT_DEDICATED_PORT=54001 \
 TELEMT_QUOTA=50 \
 TELEMT_EXPIRE="2099-12-31 23:59:59" \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) adduser
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh) adduser
 ```
 
 ```
 步骤3：查看所有人的 tg 链接
 
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) users
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh) users
 
 ```
 
@@ -95,7 +95,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 下面示例统一使用变量 `URL` 指代脚本地址，复制时换成完整地址即可：
 
 ```
-URL='https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh'
+URL='https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/mtp-new.sh'
 ```
 
 **① Go 版 - 基础安装（自定义密钥，多次安装链接保持一致）**
