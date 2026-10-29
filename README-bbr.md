@@ -56,7 +56,7 @@
 
 ```bash
 # 推荐：交互式菜单
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/bbr.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/bbr.sh)
 ```
 
 > 若需绕过 CDN 缓存获取最新版，使用 commit SHA 直链（见仓库提交记录中的路径）。
@@ -117,13 +117,13 @@ MTU=1420 IFACE=ens18 ./bbr.sh ins
 
 ```bash
 # 一键安装
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/bbr.sh) ins
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/bbr.sh) ins
 
 # 指定 MTU 并安装
-MTU=1492 bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/bbr.sh) ins eth0
+MTU=1492 bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/bbr.sh) ins eth0
 
 # 卸载（reset 与 del 等价）
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/bbr.sh) reset
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/bbr.sh) reset
 ```
 
 ---
