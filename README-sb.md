@@ -37,7 +37,7 @@ name='小叮当-美国加州' \
 nginx_pt=41007 \
 subscribe=true \
 DEBUG_FLAG=0 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 > 可选变量（需要时加到 `DEBUG_FLAG` 之前，不需要就别写）：
@@ -140,7 +140,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 示例：
 ```bash
 DEBUG_FLAG=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 <a id="mod-2"></a>
 ## ② 直连协议片段（VLESS-Reality + Hysteria2 + TUIC + AnyTLS + Socks5）
@@ -256,28 +256,28 @@ socks5://user:pass@ip:port#name
 
 ```bash
 hypt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 vless Reality 协议
 
 ```bash
 vlrt=2083 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 tuic 协议
 
 ```bash
 tupt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 anytls 协议
 
 ```bash
 anypt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 socks5 协议
@@ -289,7 +289,7 @@ socks5_username='你的s5用户名' \
 socks5_password='你的s5密码' \
 socks5_wl_flag=true \
 socks5_ips='1.2.3.4,5.6.7.0/24' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 ### 组合 2：装 2 个直连协议（同时写 `hypt` 和 `vlrt`）
@@ -297,7 +297,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 ```bash
 hypt=2082 \
 vlrt=2083 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 <a id="mod-3"></a>
@@ -378,7 +378,7 @@ argo=vmess \
 agn='test-vmess.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川vmess' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 使用 Trojan Argo 时
@@ -389,7 +389,7 @@ argo=trojan \
 agn='test-trojan.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川trojan' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 使用 VLESS Argo 时
@@ -400,7 +400,7 @@ argo=vless \
 agn='test-vless.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川vless' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 ### 组合 3（多选）：Argo 同时启用多个协议
@@ -413,7 +413,7 @@ argo_cf_pt=443 \
 agn='test-xxx.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 > `argo_cf_host` / `argo_cf_pt` 是共享值（默认 `saas.sin.fan` / `443`）；每个协议也可以单独填 `argo_vmess_cf_host` / `argo_trojan_cf_host` 等覆盖。
@@ -428,7 +428,7 @@ argo=vmess \
 agn='test-vmess.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 
@@ -444,7 +444,7 @@ argo='trojan' \
 agn='northCarolina.xxxx.xyz' \
 agk='{"AccountTag":"xxxxxxxxxxxxxx","TunnelSecret":"xxxxxxxxxxxxxx","TunnelID":"xxxxxxxxxxxxxx","Endpoint":""}' \
 name='小叮当-美国北卡' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 <a id="mod-4"></a>
@@ -492,7 +492,7 @@ ws_cdn_cf_host='cdn.example.com' \
 ws_cdn_vless_cf_host='vless.example.com' \
 ws_cdn_trojan_cf_host='trojan.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) ins
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) ins
 ```
 
 ### 3、 回源端口
@@ -637,7 +637,7 @@ ws_cdn='vmess,vless,trojan' \
 ws_cdn_cf_host='saas.sin.fan' \
 ws_cdn_sni='cdn.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 #### 每个协议不同专属域名（CF 优选域名 + 回源域名，Cloudflare origin rule 泛域名 + 多回源域名同 A 记录）
@@ -654,7 +654,7 @@ ws_cdn_vless_sni='vl-cdn.example.com' \
 ws_cdn_trojan_cf_host='tr.example.com' \
 ws_cdn_trojan_sni='tr-cdn.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 > CDN 回源端口 = 服务器 nginx_pt（默认 8080）。可同时配固定 Argo 并存（两者节点都输出）；订阅地址有固定 Argo 则直接用固定 Argo，没有才用回源域名 ws_cdn_sni（或专属 ws_cdn_{p}_sni）。
@@ -757,7 +757,7 @@ ws_cdn_vless_cf_pt=443 \
 ws_cdn_trojan_cf_host='tr-cdn.example.com' \
 ws_cdn_trojan_sni='tr-cdn.example.com' \
 ws_cdn_trojan_cf_pt=443 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) rep
 ```
 
 
@@ -767,7 +767,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 <a id="uninstall"></a>
 ## 2.2 如何卸载
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) delall
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/sb.sh) delall
 ```
 
 > `delall`：与 `del` 效果类似，但会 **完全删除** sing-box 文件夹（不保留二进制文件 / 配置），相当于彻底卸载。
