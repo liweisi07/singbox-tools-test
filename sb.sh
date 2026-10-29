@@ -1717,13 +1717,13 @@ is_valid_domain() {
     printf '%s' "$d" | grep -qE '^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$'
 }
 
-# 校验 Argo token（cloudflared token 是 base64url + 点分隔，不含空格/引号/换行）
+# 校验 Argo token（cloudflared token 是单个标准 base64 串，可含 +、/、=，无点分隔；不含空格/引号/换行）
 is_valid_argo_token() {
     local t="${1:-}"
     [ -n "$t" ] || return 1
     # 拒绝嵌入 CR/LF（同 is_valid_domain，防跨行绕过）
     [ "$t" = "$(printf '%s' "$t" | tr -d '\r\n')" ] || return 1
-    printf '%s' "$t" | grep -qE '^[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*$'
+    printf '%s' "$t" | grep -qE '^[A-Za-z0-9+/=]+$'
 }
 
 # 用法：
@@ -1802,8 +1802,8 @@ EOF
     else
         # token 模式
         if ! is_valid_argo_token "$auth"; then
-            red "❌ Argo token 格式非法：只能包含字母/数字/'-'/'_'/'.'，且不允许空格、引号、换行"
-            red "   请确认你粘贴的是完整的 cloudflared token（形如 ey...-xxx.xxx）"
+            red "❌ Argo token 格式非法：只能包含字母/数字/'+'/'/'/'='，且不允许空格、引号、换行"
+            red "   请确认你粘贴的是完整的 cloudflared token（以 eyJ 开头的一整串 base64）"
             return 1
         fi
         ARGO_MODE="token"
