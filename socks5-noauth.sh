@@ -7,12 +7,12 @@
 # - 自动重启（当前socks5服务支持系统重启后自动拉起socks5服务）
 # 用法如下：
 # 1、安装（可覆盖安装，端口号不指定则会随机端口（本版本无用户名/密码认证））：
-#   PORT=端口号 bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/socks5-noauth.sh)
+#   PORT=端口号 bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/socks5-noauth.sh)
 #   
 # 2、卸载：
-#   bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/socks5-noauth.sh) uninstall
+#   bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/socks5-noauth.sh) uninstall
 # 3、手动查看socks5节点：
-#   bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/socks5-noauth.sh) node
+#   bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools/refs/heads/main/socks5-noauth.sh) node
 #
 # 4、命令行中如何测试socks5串通不通？？只要选下方的命令执行，成功返回ip就代表成功，不用在意是否返回的是什么ip，比如你明明是ipv6环境的服务器确返回了一个ipv4.这种情况其实也是对的。
 #
