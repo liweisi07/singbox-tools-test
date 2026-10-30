@@ -178,7 +178,7 @@
           <label class="check"><input type="checkbox" id="socks5On"> 启用 Socks5 协议</label>
           <div id="socks5Box" class="hidden">
             <div class="frow" style="margin-top:10px"><label>Socks5 端口 <span class="badge">socks5pt</span></label><input type="number" id="socks5pt"></div>
-            <div class="frow"><label>账号 <span class="badge">socks5_username</span></label><input type="text" id="socks5_username"></div>
+            <div class="frow"><label>账号 <span class="badge">socks5_username</span></label><input type="text" id="socks5_username" placeholder="不填默认随机"></div>
             <div class="frow"><label>密码 <span class="badge">socks5_password</span></label><input type="text" id="socks5_password"><button type="button" class="btn-mini" onclick="genSocks5Pass()">生成</button></div>
             <label class="check"><input type="checkbox" id="socks5WlOn"> 开启 IP 白名单 <span class="badge">socks5_wl_flag</span></label>
             <div class="frow"><label>白名单 IP <span class="badge">socks5_ips</span></label><input type="text" id="socks5_ips" placeholder="逗号分隔，如 1.2.3.4,5.6.7.0/24"></div>
@@ -216,9 +216,31 @@
       <h2>sb 快捷指令速查<span class="hint">安装后在服务器执行 sb sc 创建，即可使用</span></h2>
       <div class="shortcuts">
         <div class="sc-row"><code>sb</code><span class="desc">打开主菜单</span><button type="button" class="btn-mini" onclick="copyText('sb')">复制</button></div>
-        <div class="sc-row"><code>sb sc</code><span class="desc">创建快捷指令</span><button type="button" class="btn-mini" onclick="copyText('sb sc')">复制</button></div>
-        <div class="sc-row"><code>sb ins</code><span class="desc">快捷安装</span><button type="button" class="btn-mini" onclick="copyText('sb ins')">复制</button></div>
-        <div class="sc-row"><code>sb log_sb 100</code><span class="desc">查看最近 100 行日志</span><button type="button" class="btn-mini" onclick="copyText('sb log_sb 100')">复制</button></div>
+        <div class="sc-row"><code>sb ins</code><span class="desc">安装节点</span><button type="button" class="btn-mini" onclick="copyText('sb ins')">复制</button></div>
+        <div class="sc-row"><code>sb rep</code><span class="desc">覆盖式安装/重置</span><button type="button" class="btn-mini" onclick="copyText('sb rep')">复制</button></div>
+        <div class="sc-row"><code>sb list</code><span class="desc">查看节点信息</span><button type="button" class="btn-mini" onclick="copyText('sb list')">复制</button></div>
+        <div class="sc-row"><code>sb list key</code><span class="desc">查看节点 + vless Reality 私钥</span><button type="button" class="btn-mini" onclick="copyText('sb list key')">复制</button></div>
+        <div class="sc-row"><code>sb res</code><span class="desc">重启 sing-box 和 cloudflared</span><button type="button" class="btn-mini" onclick="copyText('sb res')">复制</button></div>
+        <div class="sc-row"><code>sb rt</code><span class="desc">分流管理</span><button type="button" class="btn-mini" onclick="copyText('sb rt')">复制</button></div>
+        <div class="sc-row"><code>sb node</code><span class="desc">节点配置修改 (端口/订阅/SNI/Argo)</span><button type="button" class="btn-mini" onclick="copyText('sb node')">复制</button></div>
+        <div class="sc-row"><code>sb sub</code><span class="desc">订阅管理</span><button type="button" class="btn-mini" onclick="copyText('sb sub')">复制</button></div>
+        <div class="sc-row"><code>sb del</code><span class="desc">卸载（保留二进制）</span><button type="button" class="btn-mini" onclick="copyText('sb del')">复制</button></div>
+        <div class="sc-row"><code>sb delall</code><span class="desc">卸载全部并清理</span><button type="button" class="btn-mini" onclick="copyText('sb delall')">复制</button></div>
+        <div class="sc-row"><code>sb ups</code><span class="desc">更新 sing-box 内核</span><button type="button" class="btn-mini" onclick="copyText('sb ups')">复制</button></div>
+        <div class="sc-row"><code>sb sc</code><span class="desc">创建/刷新本快捷命令</span><button type="button" class="btn-mini" onclick="copyText('sb sc')">复制</button></div>
+        <div class="sc-row"><code>sb sc_off</code><span class="desc">删除本快捷命令</span><button type="button" class="btn-mini" onclick="copyText('sb sc_off')">复制</button></div>
+        <div class="sc-row"><code>sb autostart</code><span class="desc">开启开机自启</span><button type="button" class="btn-mini" onclick="copyText('sb autostart')">复制</button></div>
+        <div class="sc-row"><code>sb autostart_off</code><span class="desc">关闭开机自启</span><button type="button" class="btn-mini" onclick="copyText('sb autostart_off')">复制</button></div>
+        <div class="sc-row"><code>sb nginx_start</code><span class="desc">启动 Nginx</span><button type="button" class="btn-mini" onclick="copyText('sb nginx_start')">复制</button></div>
+        <div class="sc-row"><code>sb nginx_stop</code><span class="desc">停止 Nginx</span><button type="button" class="btn-mini" onclick="copyText('sb nginx_stop')">复制</button></div>
+        <div class="sc-row"><code>sb nginx_restart</code><span class="desc">重启 Nginx</span><button type="button" class="btn-mini" onclick="copyText('sb nginx_restart')">复制</button></div>
+        <div class="sc-row"><code>sb nginx_status</code><span class="desc">查看 Nginx 状态</span><button type="button" class="btn-mini" onclick="copyText('sb nginx_status')">复制</button></div>
+        <div class="sc-row"><code>sb logs</code><span class="desc">查看日志菜单（Sing-box/Argo/Nginx/安装日志）</span><button type="button" class="btn-mini" onclick="copyText('sb logs')">复制</button></div>
+        <div class="sc-row"><code>sb log_sb 100</code><span class="desc">查看 Sing-box 运行日志（最近100行）</span><button type="button" class="btn-mini" onclick="copyText('sb log_sb 100')">复制</button></div>
+        <div class="sc-row"><code>sb log_argo 100</code><span class="desc">查看 Argo 隧道日志（最近100行）</span><button type="button" class="btn-mini" onclick="copyText('sb log_argo 100')">复制</button></div>
+        <div class="sc-row"><code>sb log_ins</code><span class="desc">查看最近一次安装日志（全文）</span><button type="button" class="btn-mini" onclick="copyText('sb log_ins')">复制</button></div>
+        <div class="sc-row"><code>sb log_stop</code><span class="desc">查看服务停止原因日志（排查崩溃用）</span><button type="button" class="btn-mini" onclick="copyText('sb log_stop')">复制</button></div>
+      <p class="note">📌 注意：sb log_argo 只读 argo.log；supervise-daemon 托管的机器，Argo 日志在 supervise-argo.log，直接查那个文件。</p>
       </div>
     </div>
 
@@ -377,6 +399,13 @@ function genSocks5Pass() {
   renderSb();
 }
 var socks5PassAuto = false;
+function randomSocks5User() {
+  var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var s = "";
+  for (var i = 0; i < 10; i++) s += chars.charAt(Math.floor(Math.random() * chars.length));
+  return s;
+}
+var socks5UserAuto = false;
 function randomPort(id) {
   var p = 10000 + Math.floor(Math.random() * 50000);
   $(id).value = p;
@@ -530,6 +559,11 @@ function syncSbVisibility() {
     socks5PassAuto = true;
   }
   if (!$("socks5On").checked) { socks5PassAuto = false; }
+  if ($("socks5On").checked && val("socks5_username") === "" && !socks5UserAuto) {
+    $("socks5_username").value = randomSocks5User();
+    socks5UserAuto = true;
+  }
+  if (!$("socks5On").checked) { socks5UserAuto = false; }
   var anyPort = val("hypt") !== "" || val("vlrt") !== "" || val("tupt") !== "" || val("anypt") !== "";
   $("sniBox").classList.toggle("hidden", !anyPort);
   $("argoBox").classList.toggle("hidden", !$("argoOn").checked);
