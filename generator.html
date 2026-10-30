@@ -105,9 +105,27 @@
               <label class="check"><input type="checkbox" class="argoProto" value="vless"> VLESS</label>
               <label class="check"><input type="checkbox" class="argoProto" value="trojan"> Trojan</label>
             </div>
-            <div class="frow" style="margin-top:10px"><label>固定隧道凭据 <span class="badge">agk</span></label><input type="text" id="agk" placeholder="Token 或 JSON，留空用临时隧道"></div>
-            <div class="frow"><label>固定隧道域名 <span class="badge">agn</span></label><input type="text" id="agn" placeholder="固定 Argo 隧道的域名"></div>
-            <p class="note">Argo 本地回源端口由脚本自动随机，无需填写；选中协议后展开下方隧道配置。</p>
+            <div class="frow" style="margin-top:10px"><label>CF 优选域名/端口配置方式</label><select id="cfMode"><option value="shared">统一设置（所有协议共用一个）</option><option value="per">分别设置（每个协议单独设置）</option></select></div>
+            <div id="cfSharedBox">
+              <div class="frow"><label>CF 优选域名 <span class="badge">argo_cf_host</span></label><input type="text" id="argo_cf_host" placeholder="留空则默认 saas.sin.fan"><select id="cfHostPreset"><option value="">选择...</option><option>saas.sin.fan</option><option>cdn.dada.nyc.mn</option><option>cdns.doon.eu.org</option><option>cf.090227.xyz</option><option>mfa.gov.ua</option><option>store.ubi.com</option><option>cf.877774.xyz</option></select></div>
+              <div class="frow"><label>CF 优选端口 <span class="badge">argo_cf_pt</span></label><input type="number" id="argo_cf_pt" placeholder="默认 443"></div>
+            </div>
+            <div id="cfPerBox" class="hidden">
+              <div class="frow"><label>VMess 优选域名 <span class="badge">argo_vmess_cf_host</span></label><input type="text" id="argo_vmess_cf_host"></div>
+              <div class="frow"><label>VMess 优选端口 <span class="badge">argo_vmess_cf_pt</span></label><input type="number" id="argo_vmess_cf_pt" placeholder="默认 443"></div>
+              <div class="frow"><label>VLESS 优选域名 <span class="badge">argo_vless_cf_host</span></label><input type="text" id="argo_vless_cf_host"></div>
+              <div class="frow"><label>VLESS 优选端口 <span class="badge">argo_vless_cf_pt</span></label><input type="number" id="argo_vless_cf_pt" placeholder="默认 443"></div>
+              <div class="frow"><label>Trojan 优选域名 <span class="badge">argo_trojan_cf_host</span></label><input type="text" id="argo_trojan_cf_host"></div>
+              <div class="frow"><label>Trojan 优选端口 <span class="badge">argo_trojan_cf_pt</span></label><input type="number" id="argo_trojan_cf_pt" placeholder="默认 443"></div>
+            </div>
+            <div class="frow" style="margin-top:10px"><label>隧道类型</label><select id="tunnelType"><option value="fixed">固定隧道（自有域名 / CF Tunnel）</option><option value="temp">临时隧道</option></select></div>
+            <div id="fixedBox">
+              <div class="frow"><label>固定隧道凭据 <span class="badge">agk</span></label><input type="text" id="agk" placeholder="ey 开头字符串或 {...} JSON"></div>
+              <div class="frow"><label>固定隧道域名 <span class="badge">agn</span></label><input type="text" id="agn" placeholder="固定 Argo 隧道的域名，如 yy.example.com"></div>
+              <p class="note">固定隧道请填写上方固定隧道域名与隧道 Token；自有 CF Tunnel 可在 fscarmen CF Json 生成网获取 JSON Token（仅选了 Argo 协议才需要）。粘贴多行 Token 会自动并成一行。</p>
+            </div>
+            <div class="frow" style="margin-top:10px"><label>Argo 隧道 Tunnel 映射端口 <span class="badge">argo_pt</span></label><input type="number" id="argo_pt" placeholder="默认 8001，一般不建议修改"></div>
+            <p class="warn">⚠️ 该端口为 Cloudflare 中配置隧道的 HTTP 对应的映射端口，比如 127.0.0.1:8001。</p>
           </div>
         </div>
 
@@ -171,7 +189,7 @@
           <h2>⑦ 节点订阅</h2>
           <label class="check"><input type="checkbox" id="subOn"> 开启订阅 <span class="badge">subscribe</span></label>
           <div class="frow" style="margin-top:10px"><label>Nginx 订阅端口 <span class="badge">nginx_pt</span></label><input type="number" id="nginx_pt" value="8001" placeholder="默认 8080"></div>
-          <p class="note">⚠️ 开 Argo 时 nginx_pt 填 8001 会自动改成 8080，因为 Argo 回源端口默认就是 8001，两者相同装不上。</p>
+          <p class="note">⚠️ 开 Argo 时若 nginx_pt 与 Argo 回源端口（argo_pt，默认 8001）相同，会自动避开改成 8080（回源端口是 8080 时则改成 8001），两者相同装不上。</p>
           <p class="warn">🔙 WS-CDN 回源时：CDN 回源端口 = 服务器 nginx_pt（默认 8080），请在 Cloudflare 后台把 origin rule 重定向该端口（或 origin rule 泛域名回源）。</p>
           <p class="note">📌 订阅地址 URL = <code>https://域名/sub/UUID</code>，域名自动按以下顺序取：<span class="warn">有固定 Argo（隧道存活）就直接用固定 Argo</span> → 否则用「共享回源域名 ws_cdn_sni」→ 否则用「专属回源域名 ws_cdn_vmess_sni / ws_cdn_vless_sni / ws_cdn_trojan_sni（取第一个非空）」→ 否则用「临时 Argo」→ 最后才是 <code>http://IP:nginx_pt</code>（明文）。</p>
         </div>
@@ -392,8 +410,22 @@ function renderSb() {
   }
   if ($("argoOn").checked) {
     push(fmt("argo", checkedList("argoProto")));
-    push(fmt("agk", val("agk")));
-    push(fmt("agn", val("agn")));
+    if ($("cfMode").value === "per") {
+      push(fmt("argo_vmess_cf_host", val("argo_vmess_cf_host")));
+      push(fmt("argo_vmess_cf_pt", val("argo_vmess_cf_pt"), true));
+      push(fmt("argo_vless_cf_host", val("argo_vless_cf_host")));
+      push(fmt("argo_vless_cf_pt", val("argo_vless_cf_pt"), true));
+      push(fmt("argo_trojan_cf_host", val("argo_trojan_cf_host")));
+      push(fmt("argo_trojan_cf_pt", val("argo_trojan_cf_pt"), true));
+    } else {
+      push(fmt("argo_cf_host", val("argo_cf_host")));
+      push(fmt("argo_cf_pt", val("argo_cf_pt"), true));
+    }
+    if ($("tunnelType").value === "fixed") {
+      push(fmt("agk", val("agk")));
+      push(fmt("agn", val("agn")));
+    }
+    push(fmt("argo_pt", val("argo_pt"), true));
   }
   if ($("wsOn").checked) {
     push(fmt("ws_cdn", checkedList("wsProto")));
@@ -411,7 +443,12 @@ function renderSb() {
     push("subscribe=true");
   }
   var npt = val("nginx_pt");
-  if ($("argoOn").checked && npt === "8001") npt = "8080";
+  if ($("argoOn").checked) {
+    var apt = val("argo_pt");
+    var effA = apt !== "" ? apt : "8001";
+    if (npt === "") { if (effA === "8080") npt = "8001"; }
+    else if (npt === effA) { npt = (effA === "8080") ? "8001" : "8080"; }
+  }
   push(fmt("nginx_pt", npt, true));
   $("sbOut").value = joinCmd(parts, tail, $("sbWrap").value);
 }
@@ -451,6 +488,10 @@ function syncSbVisibility() {
   var anyPort = val("hypt") !== "" || val("vlrt") !== "" || val("tupt") !== "" || val("anypt") !== "";
   $("sniBox").classList.toggle("hidden", !anyPort);
   $("argoBox").classList.toggle("hidden", !$("argoOn").checked);
+  var argoShow = $("argoOn").checked;
+  $("cfSharedBox").classList.toggle("hidden", !argoShow || $("cfMode").value !== "shared");
+  $("cfPerBox").classList.toggle("hidden", !argoShow || $("cfMode").value !== "per");
+  $("fixedBox").classList.toggle("hidden", !argoShow || $("tunnelType").value !== "fixed");
   $("wsBox").classList.toggle("hidden", !$("wsOn").checked);
   $("socks5Box").classList.toggle("hidden", !$("socks5On").checked);
 }
@@ -458,6 +499,8 @@ function syncMtpVisibility() {
   $("mtpUserBox").classList.toggle("hidden", !$("mtpAdminOk").checked);
 }
 function renderAll() { syncSbVisibility(); syncMtpVisibility(); renderSb(); renderMtp(); }
+$("agk").addEventListener("input", function () { var v = this.value, nv = v.replace(/\r?\n/g, ""); if (nv !== v) this.value = nv; });
+$("cfHostPreset").addEventListener("change", function () { if (this.value) $("argo_cf_host").value = this.value; });
 document.addEventListener("input", renderAll);
 document.addEventListener("change", renderAll);
 renderAll();
