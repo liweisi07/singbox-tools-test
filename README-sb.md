@@ -37,7 +37,7 @@ name='小叮当-美国加州' \
 nginx_pt=41007 \
 subscribe=true \
 DEBUG_FLAG=0 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 > 可选变量（需要时加到 `DEBUG_FLAG` 之前，不需要就别写）：
@@ -140,7 +140,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 示例：
 ```bash
 DEBUG_FLAG=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 <a id="mod-2"></a>
 ## ② 直连协议片段（VLESS-Reality + Hysteria2 + TUIC + AnyTLS + Socks5）
@@ -256,28 +256,28 @@ socks5://user:pass@ip:port#name
 
 ```bash
 hypt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 vless Reality 协议
 
 ```bash
 vlrt=2083 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 tuic 协议
 
 ```bash
 tupt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 anytls 协议
 
 ```bash
 anypt=2082 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 仅 socks5 协议
@@ -289,7 +289,7 @@ socks5_username='你的s5用户名' \
 socks5_password='你的s5密码' \
 socks5_wl_flag=true \
 socks5_ips='1.2.3.4,5.6.7.0/24' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 ### 组合 2：装 2 个直连协议（同时写 `hypt` 和 `vlrt`）
@@ -297,7 +297,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 ```bash
 hypt=2082 \
 vlrt=2083 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 <a id="mod-3"></a>
@@ -378,7 +378,7 @@ argo=vmess \
 agn='test-vmess.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川vmess' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 使用 Trojan Argo 时
@@ -389,7 +389,7 @@ argo=trojan \
 agn='test-trojan.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川trojan' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 使用 VLESS Argo 时
@@ -400,7 +400,7 @@ argo=vless \
 agn='test-vless.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川vless' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 ### 组合 3（多选）：Argo 同时启用多个协议
@@ -413,7 +413,7 @@ argo_cf_pt=443 \
 agn='test-xxx.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 > `argo_cf_host` / `argo_cf_pt` 是共享值（默认 `saas.sin.fan` / `443`）；每个协议也可以单独填 `argo_vmess_cf_host` / `argo_trojan_cf_host` 等覆盖。
@@ -428,7 +428,7 @@ argo=vmess \
 agn='test-vmess.xxxx.xyz' \
 agk='ey开头的那一串' \
 name='小叮当-韩国春川' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 
@@ -444,7 +444,7 @@ argo='trojan' \
 agn='northCarolina.xxxx.xyz' \
 agk='{"AccountTag":"xxxxxxxxxxxxxx","TunnelSecret":"xxxxxxxxxxxxxx","TunnelID":"xxxxxxxxxxxxxx","Endpoint":""}' \
 name='小叮当-美国北卡' \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 <a id="mod-4"></a>
@@ -492,7 +492,7 @@ ws_cdn_cf_host='cdn.example.com' \
 ws_cdn_vless_cf_host='vless.example.com' \
 ws_cdn_trojan_cf_host='trojan.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) ins
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) ins
 ```
 
 ### 3、 回源端口
@@ -637,7 +637,7 @@ ws_cdn='vmess,vless,trojan' \
 ws_cdn_cf_host='saas.sin.fan' \
 ws_cdn_sni='cdn.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 #### 每个协议不同专属域名（CF 优选域名 + 回源域名，Cloudflare origin rule 泛域名 + 多回源域名同 A 记录）
@@ -654,7 +654,7 @@ ws_cdn_vless_sni='vl-cdn.example.com' \
 ws_cdn_trojan_cf_host='tr.example.com' \
 ws_cdn_trojan_sni='tr-cdn.example.com' \
 subscribe=true \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 > CDN 回源端口 = 服务器 nginx_pt（默认 8080）。可同时配固定 Argo 并存（两者节点都输出）；订阅地址有固定 Argo 则直接用固定 Argo，没有才用回源域名 ws_cdn_sni（或专属 ws_cdn_{p}_sni）。
@@ -757,7 +757,7 @@ ws_cdn_vless_cf_pt=443 \
 ws_cdn_trojan_cf_host='tr-cdn.example.com' \
 ws_cdn_trojan_sni='tr-cdn.example.com' \
 ws_cdn_trojan_cf_pt=443 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) rep
 ```
 
 
@@ -767,7 +767,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 <a id="uninstall"></a>
 ## 2.2 如何卸载
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh) delall
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh) delall
 ```
 
 > `delall`：与 `del` 效果类似，但会 **完全删除** sing-box 文件夹（不保留二进制文件 / 配置），相当于彻底卸载。
@@ -919,20 +919,6 @@ sb log_stop        查看服务停止原因日志（排查崩溃用）
 ```
 
 ## 2.7 版本变更信息
-
-v3.2.20 (2026-10-29)
- > Argo token 校验过严：带 `=` 的**合法** token 被拒。
-
- - **根因**：`is_valid_argo_token` 用的是白名单正则 `^[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*$`。Cloudflare 下发的 token 是 `base64(base64url(JSON))`，长度不整除 3 时自带 `=` 填充（尾部 `In0=` 就是 `"}` 的填充），合法 token 会被直接判非法，`prepare_argo_credentials` 中止安装
- - **改为黑名单**：只拒绝真正会破坏落地处的字符，其余全部放行
-   - 空白 / 控制字符（CR LF TAB）：systemd `ExecStart` 会按空白分词；写 unit 与 init 脚本时行被断开
-   - `"` `'`：破坏引号包裹（unit `ExecStart` / init 的 `command_args` / `--token "$token"`）
-   - `` ` `` `$` `\`：shell 与 init 脚本里会被当作命令替换、变量展开、转义
-   - `%`：systemd unit 的指符展开（`%i` / `%n` 等），`%` 后接未知字母会让 unit 直接报错
-   - 放行：`= + / @ : , . ; # ! * ? & | < > ( ) [ ] { } ~ ^ _ -` 以及全部字母数字
- - **`argo.service` 的 `ExecStart` 给 token 补双引号**：原来 `--token ${token}` 未加引号，是三个落地点（systemd / openrc / nohup）里唯一没有引号保护的
- - **`sbargotoken` 落盘 `echo` → `printf '%s\n'`**：token 以 `-n` / `-e` 开头时 `echo` 会把它们当选项吞掉，文件内容被写坏（读回时 token 缺头）
- - 影响面：`prepare_argo_credentials`、`install_argo_service`（systemd）、`install_argo_service_openrc`、`start_argo_no_daemon` 共用这一个校验函数，改一处全链路生效；`sb.sh` 与 `sb00.sh` 同步修改
 
 v3.2.19 (2026-10-23)
  - **`cron_running()` 在 Alpine 上误报「cron 没在运行」**：用的是 `pgrep -x cron/crond`，而 busybox 的 `-x` 是「整条命令行精确匹配」，`crond` 的 cmdline 是 `/usr/sbin/crond -c /etc/crontabs -f`，永远匹配不到；`ps -ef` 兜底在 busybox 上也不可用（只支持 `-o`/`-T`）。改为按 `/proc/<pid>/comm` 匹配，`ps` 兜底同时保留 `ps -ef` 与裸 `ps` 两种写法
@@ -1285,7 +1271,7 @@ v1.0.14 (2026-08-07)
  - 方便对接代理 [jyucoeng/aimili-vpngate](https://github.com/jyucoeng/aimili-vpngate)，该项目的代理出口为家宽 IP，可让节点使用家宽出口
 
 v1.0.13
- - sing-box 内核（1.13.14）下载源切换到本仓库 jyucoeng/singbox-tools（release: v1.13.14）
+ - sing-box 内核（1.13.14）下载源切换到本仓库 liweisi07/singbox-tools-test（release: v1.13.14）
  - 新增 .github/workflows/sync-singbox.yml：手动触发，从上游镜像 4 个 linux 二进制包（amd64/arm64 及 musl 变体）到本仓库 release
 
 v1.0.12
