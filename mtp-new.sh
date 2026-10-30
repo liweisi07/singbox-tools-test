@@ -407,7 +407,7 @@ install_mtg() {
     else
         echo -e "${BLUE}未找到本地文件，尝试从 GitHub 下载 (${TARGET_NAME})...${PLAIN}"
         # 本仓库自持源（由 sync-deps.yml 从上游镜像），如需切回上游源，取消下行注释并注释上行
-        DOWNLOAD_URL="https://github.com/jyucoeng/singbox-tools/releases/download/Go-Rust/${TARGET_NAME}"
+        DOWNLOAD_URL="https://github.com/liweisi07/singbox-tools-test/releases/download/Go-Rust/${TARGET_NAME}"
         # DOWNLOAD_URL="https://github.com/0xdabiaoge/MTProxy/releases/download/Go-Rust/${TARGET_NAME}"
         wget -O "$BIN_DIR/mtg-go" "$DOWNLOAD_URL"
         if [ $? -ne 0 ]; then
@@ -1942,7 +1942,7 @@ install_telemt() {
     else
         # --- 在线下载逻辑 ---
         # 本仓库自持源（由 sync-deps.yml 从上游镜像），如需切回上游源，取消下行注释并注释上行
-        DOWNLOAD_URL="https://github.com/jyucoeng/singbox-tools/releases/download/Go-Rust/${TARGET_BIN}"
+        DOWNLOAD_URL="https://github.com/liweisi07/singbox-tools-test/releases/download/Go-Rust/${TARGET_BIN}"
         # DOWNLOAD_URL="https://github.com/0xdabiaoge/MTProxy/releases/download/Go-Rust/${TARGET_BIN}"
         
         echo -e "${BLUE}未找到本地文件，尝试从个人 GitHub 仓库下载 (${TARGET_BIN})...${PLAIN}"
