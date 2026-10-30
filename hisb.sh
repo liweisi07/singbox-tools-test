@@ -78,7 +78,7 @@ cdn_pt="${cdn_pt:-443}"
 vl_sni_pt="${vl_sni_pt:-443}"
 
 v46url="https://icanhazip.com"
-SCRIPT_URL="https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/sb.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/sb.sh"
 
 CN_BING="www.bing.com"
 
@@ -1349,7 +1349,7 @@ update_singbox() {
 
     local archive="sing-box-${sb_ver}-linux-${cpu}${sb_lib_suffix}.tar.gz"
     # 本仓库自持源（由 sync-singbox.yml 从上游镜像），如需切回官方源，取消下行注释并注释上行
-    local url="https://github.com/jyucoeng/singbox-tools/releases/download/v${sb_ver}/${archive}"
+    local url="https://github.com/liweisi07/singbox-tools-test/releases/download/v${sb_ver}/${archive}"
     # local url="https://github.com/SagerNet/sing-box/releases/download/v${sb_ver}/${archive}"
     local tmp_archive="/tmp/${archive}"
 
