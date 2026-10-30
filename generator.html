@@ -138,6 +138,21 @@
               <label class="check"><input type="checkbox" class="wsProto" value="vless"> VLESS</label>
               <label class="check"><input type="checkbox" class="wsProto" value="trojan"> Trojan</label>
             </div>
+            <div class="frow" style="margin-top:10px"><label>优选域名/端口设置方式</label><select id="wsCfMode"><option value="shared">统一设置（所有协议共用一个）</option><option value="per">分别设置（每个协议单独设置）</option></select></div>
+            <div id="wsCfSharedBox">
+              <div class="frow"><label>共享 CF 优选域名 <span class="badge">ws_cdn_cf_host</span></label><input type="text" id="ws_cdn_cf_host" placeholder="如 saas.sin.fan 或优选 IP，留空则默认 saas.sin.fan"><select id="wsCfHostPreset"><option value="">选择...</option><option>saas.sin.fan</option><option>cdn.dada.nyc.mn</option><option>cdns.doon.eu.org</option><option>cf.090227.xyz</option><option>mfa.gov.ua</option><option>store.ubi.com</option><option>cf.877774.xyz</option></select></div>
+              <div class="frow"><label>共享 CF 优选端口 <span class="badge">ws_cdn_cf_pt</span></label><input type="number" id="ws_cdn_cf_pt" placeholder="默认 443"></div>
+            </div>
+            <div id="wsCfPerBox" class="hidden">
+              <div class="frow"><label>VMess 优选域名 <span class="badge">ws_cdn_vmess_cf_host</span></label><input type="text" id="ws_cdn_vmess_cf_host"></div>
+              <div class="frow"><label>VMess 优选端口 <span class="badge">ws_cdn_vmess_cf_pt</span></label><input type="number" id="ws_cdn_vmess_cf_pt" placeholder="默认 443"></div>
+              <div class="frow"><label>VLESS 优选域名 <span class="badge">ws_cdn_vless_cf_host</span></label><input type="text" id="ws_cdn_vless_cf_host"></div>
+              <div class="frow"><label>VLESS 优选端口 <span class="badge">ws_cdn_vless_cf_pt</span></label><input type="number" id="ws_cdn_vless_cf_pt" placeholder="默认 443"></div>
+              <div class="frow"><label>Trojan 优选域名 <span class="badge">ws_cdn_trojan_cf_host</span></label><input type="text" id="ws_cdn_trojan_cf_host"></div>
+              <div class="frow"><label>Trojan 优选端口 <span class="badge">ws_cdn_trojan_cf_pt</span></label><input type="number" id="ws_cdn_trojan_cf_pt" placeholder="默认 443"></div>
+            </div>
+            <p class="note">📌「专属 CF 优选域名」是协议单独的连接地址（可填域名、IP 或优选域名）；「专属回源域名」是协议的真实域名（Host 头 + SNI）。填了共享 CF 优选域名，就代表多个 CDN 协议共用一个连接地址。</p>
+            <p class="note">📌「共享 CF 优选域名 / 回源域名 / 优选端口」是所有协议共用的那组参数；共享 ws_cdn_cf_host 是各协议连接地址的保底，ws_cdn_sni（回源域名）才是订阅地址用的 https 域名。CDN 端口仅限 HTTPS 系：443 / 2053 / 2083 / 2087 / 2096 / 8443，非法会回退 443。</p>
             <div class="frow" style="margin-top:10px"><label>共享回源域名 <span class="badge">ws_cdn_sni</span></label><input type="text" id="ws_cdn_sni" placeholder="三个协议共用的回源域名"></div>
             <div class="frow"><label>VMess 专属域名 <span class="badge">ws_cdn_vmess_sni</span></label><input type="text" id="ws_cdn_vmess_sni"></div>
             <div class="frow"><label>VLESS 专属域名 <span class="badge">ws_cdn_vless_sni</span></label><input type="text" id="ws_cdn_vless_sni"></div>
@@ -188,8 +203,8 @@
         <div class="card">
           <h2>⑦ 节点订阅</h2>
           <label class="check"><input type="checkbox" id="subOn"> 开启订阅 <span class="badge">subscribe</span></label>
-          <div class="frow" style="margin-top:10px"><label>Nginx 订阅端口 <span class="badge">nginx_pt</span></label><input type="number" id="nginx_pt" value="8001" placeholder="默认 8080"></div>
-          <p class="note">⚠️ 开 Argo 时若 nginx_pt 与 Argo 回源端口（argo_pt，默认 8001）相同，会自动避开改成 8080（回源端口是 8080 时则改成 8001），两者相同装不上。</p>
+          <div class="frow" style="margin-top:10px"><label>Nginx 订阅端口 <span class="badge">nginx_pt</span></label><input type="number" id="nginx_pt" placeholder="默认 8080"></div>
+          <p class="note">⚠️ nginx_pt 默认留空（脚本默认 8080）。开 Argo 时若填的 nginx_pt 与 Argo 回源端口（argo_pt，默认 8001）相同，会自动避开改成 8080（回源端口是 8080 时则改成 8001），两者相同装不上。</p>
           <p class="warn">🔙 WS-CDN 回源时：CDN 回源端口 = 服务器 nginx_pt（默认 8080），请在 Cloudflare 后台把 origin rule 重定向该端口（或 origin rule 泛域名回源）。</p>
           <p class="note">📌 订阅地址 URL = <code>https://域名/sub/UUID</code>，域名自动按以下顺序取：<span class="warn">有固定 Argo（隧道存活）就直接用固定 Argo</span> → 否则用「共享回源域名 ws_cdn_sni」→ 否则用「专属回源域名 ws_cdn_vmess_sni / ws_cdn_vless_sni / ws_cdn_trojan_sni（取第一个非空）」→ 否则用「临时 Argo」→ 最后才是 <code>http://IP:nginx_pt</code>（明文）。</p>
         </div>
@@ -372,7 +387,6 @@ function resetForm(paneId) {
     else if (el.tagName === "SELECT") { el.selectedIndex = 0; }
     else if (el.tagName !== "TEXTAREA") { el.value = ""; }
   }
-  if (paneId === "paneSb") { $("nginx_pt").value = "8001"; }
   renderAll();
 }
 function checkedList(cls) {
@@ -429,6 +443,17 @@ function renderSb() {
   }
   if ($("wsOn").checked) {
     push(fmt("ws_cdn", checkedList("wsProto")));
+    if ($("wsCfMode").value === "per") {
+      push(fmt("ws_cdn_vmess_cf_host", val("ws_cdn_vmess_cf_host")));
+      push(fmt("ws_cdn_vmess_cf_pt", val("ws_cdn_vmess_cf_pt"), true));
+      push(fmt("ws_cdn_vless_cf_host", val("ws_cdn_vless_cf_host")));
+      push(fmt("ws_cdn_vless_cf_pt", val("ws_cdn_vless_cf_pt"), true));
+      push(fmt("ws_cdn_trojan_cf_host", val("ws_cdn_trojan_cf_host")));
+      push(fmt("ws_cdn_trojan_cf_pt", val("ws_cdn_trojan_cf_pt"), true));
+    } else {
+      push(fmt("ws_cdn_cf_host", val("ws_cdn_cf_host")));
+      push(fmt("ws_cdn_cf_pt", val("ws_cdn_cf_pt"), true));
+    }
     push(fmt("ws_cdn_sni", val("ws_cdn_sni")));
     push(fmt("ws_cdn_vmess_sni", val("ws_cdn_vmess_sni")));
     push(fmt("ws_cdn_vless_sni", val("ws_cdn_vless_sni")));
@@ -493,6 +518,9 @@ function syncSbVisibility() {
   $("cfPerBox").classList.toggle("hidden", !argoShow || $("cfMode").value !== "per");
   $("fixedBox").classList.toggle("hidden", !argoShow || $("tunnelType").value !== "fixed");
   $("wsBox").classList.toggle("hidden", !$("wsOn").checked);
+  var wsShow = $("wsOn").checked;
+  $("wsCfSharedBox").classList.toggle("hidden", !wsShow || $("wsCfMode").value !== "shared");
+  $("wsCfPerBox").classList.toggle("hidden", !wsShow || $("wsCfMode").value !== "per");
   $("socks5Box").classList.toggle("hidden", !$("socks5On").checked);
 }
 function syncMtpVisibility() {
@@ -501,6 +529,7 @@ function syncMtpVisibility() {
 function renderAll() { syncSbVisibility(); syncMtpVisibility(); renderSb(); renderMtp(); }
 $("agk").addEventListener("input", function () { var v = this.value, nv = v.replace(/\r?\n/g, ""); if (nv !== v) this.value = nv; });
 $("cfHostPreset").addEventListener("change", function () { if (this.value) $("argo_cf_host").value = this.value; });
+$("wsCfHostPreset").addEventListener("change", function () { if (this.value) $("ws_cdn_cf_host").value = this.value; });
 document.addEventListener("input", renderAll);
 document.addEventListener("change", renderAll);
 renderAll();
