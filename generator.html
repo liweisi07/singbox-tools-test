@@ -195,6 +195,7 @@
               <option value="delall">delall · 彻底卸载</option>
               <option value="list">list · 查看节点</option>
               <option value="list key">list key · 查看节点 + Reality 私钥</option>
+              <option value="ups">ups · 更新 sing-box 内核</option>
             </select>
           </div>
           <p class="note">选择 del / delall / list 等管理动作时，将只生成不带环境变量的管理命令。</p>
@@ -240,15 +241,20 @@
   <div id="paneMtp" class="hidden">
     <div class="card">
       <h2>① 安装模式与基础参数</h2>
-      <div class="frow"><label>安装模式 <span class="badge">INSTALL_MODE</span></label><input type="text" id="mtpMode" placeholder="如 rep / ins，留空则用下方动作"></div>
+      <div class="frow"><label>安装模式 <span class="badge">INSTALL_MODE</span></label><select id="mtpMode"><option value="telemt" selected>Telemt 高性能版（多用户/配额/限速，默认）</option><option value="go">Go 版 mtg（轻量）</option></select></div>
       <div class="frow"><label>监听端口 <span class="badge">PORT</span></label><input type="number" id="mtpPort"></div>
       <div class="frow"><label>伪装域名 <span class="badge">DOMAIN</span></label><input type="text" id="mtpDomain"></div>
       <div class="frow"><label>监听模式 <span class="badge">IP_MODE</span></label>
-        <select id="mtpIpMode"><option value="">默认 v4</option><option value="v4">v4</option><option value="v6">v6</option><option value="v46">v46</option></select>
+        <select id="mtpIpMode"><option value="">默认 v4</option><option value="v4">v4</option><option value="v6">v6</option><option value="dual">dual · 双栈监听</option></select>
       </div>
       <div class="frow"><label>通信密钥 <span class="badge">SECRET</span></label><input type="text" id="mtpSecret"><button type="button" class="btn-mini" onclick="genSecret()">生成</button></div>
       <div class="frow"><label>管理员账号 <span class="badge">TELEMT_USER</span></label><input type="text" id="mtpUser" placeholder="默认 admin"></div>
       <div class="frow"><label>管理员密钥 <span class="badge">TELEMT_SECRET</span></label><input type="text" id="mtpUserSecret"></div>
+      <div class="frow"><label>管理员配额 <span class="badge">TELEMT_QUOTA</span></label><input type="text" id="mtpQuota" placeholder="GB，如 100，留空不限"></div>
+      <div class="frow"><label>管理员到期时间 <span class="badge">TELEMT_EXPIRE</span></label><input type="text" id="mtpExpire" placeholder="如 2026-12-31，留空不限"></div>
+      <div class="frow"><label>上行限速 <span class="badge">TELEMT_SPEED_UP</span></label><input type="text" id="mtpSpeedUp" placeholder="MB/s，如 1.5，留空不限"></div>
+      <div class="frow"><label>下行限速 <span class="badge">TELEMT_SPEED_DOWN</span></label><input type="text" id="mtpSpeedDown" placeholder="MB/s，如 5.0，留空同上行"></div>
+      <div class="frow"><label>配额重置日 <span class="badge">TELEMT_RESET_DAY</span></label><input type="number" id="mtpResetDay" placeholder="1-28，留空默认"></div>
       <p class="note">自定义 SECRET 后，无论重装多少次，分享链接保持一致（非法值将中止安装）。</p>
     </div>
 
@@ -264,9 +270,13 @@
           <option value="stop">stop · 停止</option>
           <option value="restart">restart · 重启</option>
           <option value="usage">usage · 流量统计</option>
+          <option value="users">users · 查看所有用户</option>
+          <option value="getuser">getuser · 查询用户配置</option>
+          <option value="moduser">moduser · 修改用户配置</option>
+          <option value="deluser">deluser · 删除用户</option>
         </select>
       </div>
-      <p class="note">del / list / start / stop / restart / usage 等管理动作只生成裸命令。</p>
+      <p class="note">del / list / start / stop / restart / usage / users 等管理动作只生成裸命令；getuser / moduser / deluser 需配合下方多用户字段生成。</p>
     </div>
 
     <div class="card">
@@ -274,11 +284,12 @@
       <label class="check"><input type="checkbox" id="mtpAdminOk"> 我已运行上方安装命令，管理员主账号（admin）已部署上线</label>
       <p class="warn">🔒 生成多用户管理命令前，请先在服务器运行上方「Telemt 高性能版」安装命令（rep / ins），确认管理员主账号已部署上线后勾选。</p>
       <div id="mtpUserBox" class="hidden">
-        <div class="frow" style="margin-top:10px"><label>新用户名 <span class="badge">NEW_USER</span></label><input type="text" id="newUser"></div>
-        <div class="frow"><label>专属端口 <span class="badge">NEW_DEDICATED_PORT</span></label><input type="number" id="newPort" placeholder="留空自动"></div>
-        <div class="frow"><label>流量配额 <span class="badge">NEW_QUOTA</span></label><input type="text" id="newQuota" placeholder="如 100G，留空不限"></div>
-        <div class="frow"><label>到期时间 <span class="badge">NEW_EXPIRE</span></label><input type="text" id="newExpire" placeholder="如 2026-12-31，留空不限"></div>
-        <div class="frow"><label>限速 <span class="badge">NEW_SPEED</span></label><input type="text" id="newSpeed" placeholder="如 10Mbps，留空不限"></div>
+        <div class="frow" style="margin-top:10px"><label>子账号 <span class="badge">TELEMT_USER</span></label><input type="text" id="mgUser"></div>
+        <div class="frow"><label>专属端口 <span class="badge">TELEMT_DEDICATED_PORT</span></label><input type="number" id="mgPort" placeholder="留空自动"></div>
+        <div class="frow"><label>流量配额 <span class="badge">TELEMT_QUOTA</span></label><input type="text" id="mgQuota" placeholder="GB，如 100，留空不限"></div>
+        <div class="frow"><label>到期时间 <span class="badge">TELEMT_EXPIRE</span></label><input type="text" id="mgExpire" placeholder="如 2026-12-31，留空不限"></div>
+        <div class="frow"><label>通信密钥 <span class="badge">TELEMT_SECRET</span></label><input type="text" id="mgSecret" placeholder="选填"></div>
+        <div class="frow"><label>限速 <span class="badge">TELEMT_SPEED_UP / TELEMT_SPEED_DOWN</span></label><input type="text" id="mgSpeed" placeholder="MB/s，留空不限，上下行同值"></div>
       </div>
     </div>
 
@@ -293,7 +304,7 @@
         <button type="button" class="btn-ghost" onclick="resetForm('paneMtp')">♻️ 重置表单</button>
       </div>
       <textarea class="out" id="mtpOut" readonly></textarea>
-      <p class="note">mtp 管理命令速查 Go 版：安装后可用上方管理动作（list / start / stop / restart / usage）查看与管理节点；多用户管理需先勾选「管理员主账号已部署上线」再生成 adduser 命令。</p>
+      <p class="note">mtp 管理命令速查 Go 版：安装后可用上方管理动作（list / start / stop / restart / usage / users）查看与管理节点；多用户管理需先勾选「管理员主账号已部署上线」，填好子账号后生成 adduser / getuser / moduser / deluser 命令。</p>
     </div>
   </div>
 
@@ -398,7 +409,7 @@ function checkedList(cls) {
 
 function renderSb() {
   var action = $("sbAction").value;
-  var manage = (action === "del" || action === "delall" || action === "list" || action === "list key");
+  var manage = (action === "del" || action === "delall" || action === "list" || action === "list key" || action === "ups");
   var tail = fetchCmd(SB_URL, $("sbDl").value) + " " + action;
   if (manage) { $("sbOut").value = tail; return; }
   var parts = [];
@@ -480,20 +491,24 @@ function renderSb() {
 
 function renderMtp() {
   var action = $("mtpAction").value;
-  var manage = (action === "del" || action === "list" || action === "start" || action === "stop" || action === "restart" || action === "usage");
+  var manage = (action === "del" || action === "list" || action === "start" || action === "stop" || action === "restart" || action === "usage" || action === "users");
+  var userMgmt = (action === "getuser" || action === "moduser" || action === "deluser");
   var tail = fetchCmd(MTP_URL, $("mtpDl").value) + " " + action;
   var parts = [];
   function push(v) { if (v) parts.push(v); }
-  if ($("mtpAdminOk").checked && val("newUser") !== "") {
-    push(fmt("NEW_USER", val("newUser")));
-    push(fmt("NEW_DEDICATED_PORT", val("newPort"), true));
-    push(fmt("NEW_QUOTA", val("newQuota")));
-    push(fmt("NEW_EXPIRE", val("newExpire")));
-    push(fmt("NEW_SPEED", val("newSpeed")));
-    $("mtpOut").value = joinCmd(parts, fetchCmd(MTP_URL, $("mtpDl").value) + " adduser", $("mtpWrap").value);
+  if ($("mtpAdminOk").checked && val("mgUser") !== "") {
+    push(fmt("TELEMT_USER", val("mgUser")));
+    push(fmt("TELEMT_DEDICATED_PORT", val("mgPort"), true));
+    push(fmt("TELEMT_QUOTA", val("mgQuota")));
+    push(fmt("TELEMT_EXPIRE", val("mgExpire")));
+    push(fmt("TELEMT_SECRET", val("mgSecret")));
+    var spd = val("mgSpeed");
+    if (spd !== "") { push(fmt("TELEMT_SPEED_UP", spd)); push(fmt("TELEMT_SPEED_DOWN", spd)); }
+    var mgAction = userMgmt ? action : "adduser";
+    $("mtpOut").value = joinCmd(parts, fetchCmd(MTP_URL, $("mtpDl").value) + " " + mgAction, $("mtpWrap").value);
     return;
   }
-  if (manage) { $("mtpOut").value = tail; return; }
+  if (manage || userMgmt) { $("mtpOut").value = tail; return; }
   push(fmt("INSTALL_MODE", val("mtpMode")));
   push(fmt("PORT", val("mtpPort"), true));
   push(fmt("DOMAIN", val("mtpDomain")));
@@ -501,6 +516,11 @@ function renderMtp() {
   push(fmt("SECRET", val("mtpSecret")));
   push(fmt("TELEMT_USER", val("mtpUser")));
   push(fmt("TELEMT_SECRET", val("mtpUserSecret")));
+  push(fmt("TELEMT_QUOTA", val("mtpQuota")));
+  push(fmt("TELEMT_EXPIRE", val("mtpExpire")));
+  push(fmt("TELEMT_SPEED_UP", val("mtpSpeedUp")));
+  push(fmt("TELEMT_SPEED_DOWN", val("mtpSpeedDown")));
+  push(fmt("TELEMT_RESET_DAY", val("mtpResetDay"), true));
   $("mtpOut").value = joinCmd(parts, tail, $("mtpWrap").value);
 }
 
