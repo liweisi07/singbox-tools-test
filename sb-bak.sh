@@ -8,7 +8,7 @@ AUTHOR="littleDoraemon"
 # 拆分自拉地址的组成部分：改仓库/组织/脚本名时只改这里，叠加 SB_SCRIPT_URL 可完全覆盖自拉地址
 SB_SCRIPT_NAME="sb-bak.sh"
 
-REPO_PATH="jyucoeng/singbox-tools"
+REPO_PATH="liweisi07/singbox-tools-test"
 SCRIPT_URL="${SB_SCRIPT_URL:-https://raw.githubusercontent.com/${REPO_PATH}/refs/heads/main/${SB_SCRIPT_NAME}}"
 # ================== 仓库信息 结束 ==================
 
@@ -1855,7 +1855,7 @@ update_singbox() {
 
     local archive="sing-box-${sb_ver}-linux-${cpu}${sb_lib_suffix}.tar.gz"
     # 本仓库自持源（由 sync-singbox.yml 从上游镜像），如需切回官方源，取消下行注释并注释上行
-    local url="https://github.com/jyucoeng/singbox-tools/releases/download/v${sb_ver}/${archive}"
+    local url="https://github.com/liweisi07/singbox-tools-test/releases/download/v${sb_ver}/${archive}"
     # local url="https://github.com/SagerNet/sing-box/releases/download/v${sb_ver}/${archive}"
     local tmp_archive="/tmp/${archive}"
 
