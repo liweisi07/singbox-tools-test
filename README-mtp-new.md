@@ -5,7 +5,7 @@
 ### 1、交互式菜单（无参数运行，推荐此运行方式，因为安装参数有点多，带交互方式比较友好）
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh)
 ```
 
 菜单功能一览：
@@ -31,7 +31,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 #### 安装 Go 版（mtg）
 
 ```
-PORT=20301 DOMAIN='www.apple.com' IP_MODE='v4' bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+PORT=20301 DOMAIN='www.apple.com' IP_MODE='v4' bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh) rep
 ```
 
 #### 安装 Telemt 高性能版 （注意：请在每一个环境变量之后都加一个 \，确保每行末尾 \ 前没有多余空格）
@@ -48,7 +48,7 @@ TELEMT_EXPIRE='2026-12-31' \
 TELEMT_SPEED_UP=1.5 \
 TELEMT_SPEED_DOWN=5.0 \
 TELEMT_RESET_DAY=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh) rep
 ```
 
 **MTProxy Telemt版完整创建流程示例**（主账号 + 子用户 + 查看链接）
@@ -70,7 +70,7 @@ TELEMT_USER='admin' \
 TELEMT_QUOTA=100 \
 TELEMT_EXPIRE='2099-12-31' \
 TELEMT_RESET_DAY=1 \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) rep
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh) rep
 ```
 
 ```
@@ -80,13 +80,13 @@ TELEMT_USER=doraemon \
 TELEMT_DEDICATED_PORT=54001 \
 TELEMT_QUOTA=50 \
 TELEMT_EXPIRE="2099-12-31 23:59:59" \
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) adduser
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh) adduser
 ```
 
 ```
 步骤3：查看所有人的 tg 链接
 
-bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh) users
+bash <(curl -Ls https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh) users
 
 ```
 
@@ -95,7 +95,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/he
 下面示例统一使用变量 `URL` 指代脚本地址，复制时换成完整地址即可：
 
 ```
-URL='https://raw.githubusercontent.com/jyucoeng/singbox-tools/refs/heads/main/mtp-new.sh'
+URL='https://raw.githubusercontent.com/liweisi07/singbox-tools-test/refs/heads/main/mtp-new.sh'
 ```
 
 **① Go 版 - 基础安装（自定义密钥，多次安装链接保持一致）**
@@ -373,7 +373,7 @@ alice | 已用 2.00GB / 限额 2.00GB | 2026-08-03 10:00:12
 ### 6、注意事项
 
 - 需要 **root** 权限运行
-- 安装流程：优先使用本地同目录下的预编译二进制（`mtg-go-<arch>` / `telemt-linux-<arch>` / `telemt`），未找到则从本项目 [singbox-tools](https://github.com/jyucoeng/singbox-tools) 的 `Go-Rust` Release 下载
+- 安装流程：优先使用本地同目录下的预编译二进制（`mtg-go-<arch>` / `telemt-linux-<arch>` / `telemt`），未找到则从本项目 [singbox-tools-test](https://github.com/liweisi07/singbox-tools-test) 的 `Go-Rust` Release 下载
 - 支持系统：Debian/Ubuntu（systemd）、CentOS/RHEL（systemd）、Alpine（OpenRC）
 - Telemt 多用户功能：专属端口、流量配额、到期日、独立限速、月度自动重置（Cron）
 - 流量统计：每小时自动快照 + 本月用量报表 + 各用户流量耗尽时间记录
